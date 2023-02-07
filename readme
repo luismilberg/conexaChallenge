@@ -1,0 +1,8 @@
+Requisitos: Tener instalado docker.
+
+Pasos para ejecución:
+
+1 - Clonar el repositorio
+2 - Ejecutar el comando ```docker-compose up -d``` en la raiz del repositorio.
+
+Se adjunta JSON con los endpoints de Postman para testear

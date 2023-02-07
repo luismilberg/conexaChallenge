@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+
+    business:
+        build:
+            context: ./business
+        command: npm start
+        depends_on:
+            - login
+        environment:
+            - SECRET_KEY=secretkey
+            - PORT=3002
+            - DBURL=mongodb://mongodb:27017/conexa-challenge
+
+    gateway:
+        build:
+            context: ./gateway
+        command: npm start
+        ports:
+            - 3000:3000
+        depends_on:
+            - mongodb
+        environment:
+            - PORT=3000
+            - LOGIN_URL=http://login:3001
+            - BUSINESS_URL=http://business:3002
+
+    login:
+        build:
+            context: ./logIn
+        command: npm start
+        depends_on:
+            - gateway
+        environment:
+            - SECRET_KEY=secretkey
+            - PORT=3001
+            - DBURL=mongodb://mongodb:27017/conexa-challenge
+            - APIGATEWAY=http://gateway:3000=value
+
+    mongodb:
+        image: mongo:5.0
+        volumes:
+            - ~/apps/mongo:/data/db
