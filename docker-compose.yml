@@ -35,7 +35,7 @@ services:
             - SECRET_KEY=secretkey
             - PORT=3001
             - DBURL=mongodb://mongodb:27017/conexa-challenge
-            - APIGATEWAY=http://gateway:3000=value
+            - APIGATEWAY=http://gateway:3000
 
     mongodb:
         image: mongo:5.0
