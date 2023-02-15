@@ -1,4 +1,5 @@
 const httpStatus = require('http-status');
+const apicache = require('apicache')
 const userService = require('./user.service');
 const userDTO = require('./user.dto');
 const Token = require('../../utils/Token');
@@ -7,6 +8,7 @@ const Token = require('../../utils/Token');
 const createUser = async (req, res) => {
     try {
         const user = await userService.createUser(req.body);
+        apicache.clear();
         res.status(httpStatus.CREATED).send(userDTO.single(user));
     } catch (error) {
         console.log(error);

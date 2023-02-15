@@ -6,24 +6,21 @@ const jwt = require('jsonwebtoken');
 
 const autenticarUsuario = async (authBody) => {
     const { email, password } = authBody;
-    const user = await userService.getUserByEmail(email);
-    const hashedUserPassword = user.password;
-    let response = {};
+    const dbUser = await userService.getUserByEmail(email);
 
-    if (!user) {
-        throw new ApiError(httpStatus.BAD_REQUEST, 'Check email or password');
-    } else if (!bcrypt.compareSync(password, hashedUserPassword)) {
+    if (!dbUser || !bcrypt.compareSync(password, dbUser.password)) {
         throw new ApiError(httpStatus.BAD_REQUEST, 'Check email or password');
     } else {
         const token = jwt.sign(
             {
-                email: user.email,
+                email: dbUser.email,
             },
             process.env.SECRET_KEY,
             {
                 expiresIn: "12h",
             }
         );
+        let response = {};
         response.token = token;
         return response;
     }
