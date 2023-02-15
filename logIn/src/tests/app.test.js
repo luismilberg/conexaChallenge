@@ -23,7 +23,6 @@ describe('Auth endpoint test', () => {
             password: '123456'
         }
         await userService.createUser(userBody);
-        // const response = await authService.autenticarUsuario(userBody);
         const res = await request(app).post('/login').send(userBody);
         expect(res.statusCode).toBe(200);
         expect(res.body).toHaveProperty('token');
