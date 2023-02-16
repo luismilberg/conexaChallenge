@@ -7,8 +7,12 @@ const createUser = async (userBody) => {
     return user;
 }
 
-const getUsers = async (limit = 10, page = 1, token) => {
-    const { data } = await axios.get(`${process.env.APIGATEWAY}/business/users?limit=${limit}&page=${page}`, Token.getHeaderWithToken(token));
+const getUsers = async (limit = 10, page = 1, email = '',token) => {
+    let url = `${process.env.APIGATEWAY}/business/users?limit=${limit}&page=${page}`;
+    if(email.length > 0) {
+        url += `&email=${email}`
+    }
+    const { data } = await axios.get(url, Token.getHeaderWithToken(token));
     return data;
 }
 

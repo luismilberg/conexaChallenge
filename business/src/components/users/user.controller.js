@@ -3,8 +3,9 @@ const userService = require('./user.service');
 const getUsers = async (req, res) => {
     const limit = req.query.limit;
     const page = req.query.page;
+    const email = req.query.email;
     try {
-        const result = await userService.getUsers(limit, page);
+        const result = await userService.getUsers(limit, page, email);
         res.send(result);
     } catch (error) {
         console.log(error);
