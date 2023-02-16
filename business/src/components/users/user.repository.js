@@ -1,14 +1,24 @@
 const User = require('./user.model');
 
-const getUsers = async (limit = 10, page = 1) => {
+const getUsers = async (limit = 10, page = 1, email = '') => {
 
     limit = parseInt(limit) > 0 ? parseInt(limit) : 10;
     page = parseInt(page) > 0 ? parseInt(page) : 0;
+    let filters = {};
+    
+    if (email.length > 0) {
+        filters = {
+            email: {
+                '$regex': email,
+                $options: 'i'
+            }
+        }
+    }
 
     const offset = page > 0 ? limit * (page - 1) : 0;
 
     const [users, totalElements] = await Promise.all([
-        User.find().skip(offset).limit(limit),
+        User.find(filters).skip(offset).limit(limit),
         User.countDocuments()
     ]);
 

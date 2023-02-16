@@ -16,6 +16,8 @@ router
     )
     .get(
         auth,
+        userValidation.getAllUsersValidation(),
+        userValidation.validate,
         cache(),
         userController.getUsers
     );

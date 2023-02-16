@@ -20,8 +20,10 @@ const getUsers = async (req, res) => {
     const token = Token.getTokenFromRequest(req);
     const limit = req.query.limit;
     const page = req.query.page;
+    const email = req.query.email;
+
     try {
-        const result = await userService.getUsers(limit, page, token);
+        const result = await userService.getUsers(limit, page, email, token);
         res.send(result);
     } catch (error) {
         res.status(error.statusCode || error.response.status || httpStatus.INTERNAL_SERVER_ERROR).send({ message: error.response.data });
