@@ -10,7 +10,7 @@ const getUsers = async (limit = 10, page = 1, email = '') => {
     const {users, totalElements} = await repository.getUsers(limit, page, email);
 
     const response = {
-        users: userDTO.multiple(users),
+        data: userDTO.multiple(users),
         filteredElements: users.length,
         totalElements,
         page,

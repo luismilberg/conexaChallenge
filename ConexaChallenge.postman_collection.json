@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"janibergman@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"raw": "{\n    \"email\": \"luismilberg@gmail.com\",\n    \"password\": \"123456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,7 +79,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmliZXJnbWFuQGdtYWlsLmNvbSIsImlhdCI6MTY3NTc4Nzg4MCwiZXhwIjoxNjc1ODMxMDgwfQ.BiA2J8GliLVXUilPnFO5SFvLiRpFZB0AXd3sIwvL3Ig",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1aXNtaWxiZXJnQGdtYWlsLmNvbSIsImlhdCI6MTY3NjQ5ODE1OCwiZXhwIjoxNjc2NTQxMzU4fQ.Upk2DkzH4H3Gs6_zqu8PyXa6WduverIOtR8p7VUhyCg",
 							"type": "string"
 						}
 					]
@@ -87,7 +87,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/users?limit=3&page=2",
+					"raw": "http://localhost:3000/users?email=luismilberg@gmail.com&limit=10&page=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -98,12 +98,16 @@
 					],
 					"query": [
 						{
+							"key": "email",
+							"value": "luismilberg@gmail.com"
+						},
+						{
 							"key": "limit",
-							"value": "3"
+							"value": "10"
 						},
 						{
 							"key": "page",
-							"value": "2"
+							"value": "1"
 						}
 					]
 				}
